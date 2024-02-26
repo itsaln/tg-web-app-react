@@ -19,6 +19,12 @@ const Form = () => {
 		}
 		
 		tg.sendData(JSON.stringify(data))
+	}, [country, street, subject])
+	
+	useEffect(() => {
+		tg.MainButton.setParams({
+			text: 'Отправить данные'
+		})
 	}, [])
 	
 	useEffect(() => {
@@ -27,13 +33,7 @@ const Form = () => {
 		return () => {
 			Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
 		}
-	}, [])
-	
-	useEffect(() => {
-		tg.MainButton.setParams({
-			text: 'Отправить данные'
-		})
-	}, [])
+	}, [onSendData])
 	
 	useEffect(() => {
 		if (!street || !country) {
