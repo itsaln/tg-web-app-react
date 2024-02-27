@@ -28,21 +28,23 @@ const ProductList = () => {
 	
 	const [addedItems, setAddedItems] = useState([])
 	
-	const onSendData = useCallback(() => {
+	const onSendData = useCallback( async () => {
 		const data = {
 			products: addedItems,
 			totalPrice: getTotalPrice(addedItems),
 			queryId
 		}
 		
-		fetch('http://localhost:8000', {
+		alert('queryId:---', queryId)
+		
+		await fetch('https://tg-web-app-bot-hqfg.onrender.com/web-data', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
 		})
-	}, [])
+	}, [addedItems])
 	
 	useEffect(() => {
 		Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
