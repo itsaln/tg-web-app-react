@@ -35,7 +35,7 @@ const ProductList = () => {
 			queryId
 		}
 		
-		alert('queryId:---', queryId)
+		window.alert('queryId suka:---', data.queryId)
 		
 		await fetch('https://tg-web-app-bot-hqfg.onrender.com/web-data', {
 			method: 'POST',
